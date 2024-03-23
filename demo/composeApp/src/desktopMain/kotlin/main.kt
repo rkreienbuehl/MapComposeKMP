@@ -1,22 +1,36 @@
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import cafe.adriel.voyager.navigator.CurrentScreen
+import cafe.adriel.voyager.navigator.Navigator
 import dev.kreienbuehl.mapcompose.ui.MapUI
 import dev.kreienbuehl.mapcompose.utils.density
+import dev.kreienbuehl.mapcomposekmp.ui.screens.HomeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun desktopApp() {
-    density = LocalDensity.current
-    println(density)
-    var viewModel = remember {OsmVM()}
-
     MaterialTheme {
-        MapUI(state = viewModel.state)
+        Navigator(HomeScreen) { navigator ->
+            Scaffold(
+                topBar = { TopAppBar() {
+                    if (navigator.lastItem != HomeScreen) {
+                        Button(onClick = { navigator.pop() }) {
+                            Text("Back")
+                        }
+                    }
+                } },
+                content = { CurrentScreen() },
+            )
+        }
     }
 }
 
