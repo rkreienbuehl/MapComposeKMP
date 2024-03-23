@@ -3,9 +3,8 @@ package dev.kreienbuehl.mapcomposekmp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import dev.kreienbuehl.mapcomposekmp.ui.MapComposeDemoApp
+import cafe.adriel.voyager.navigator.Navigator
+import dev.kreienbuehl.mapcomposekmp.ui.screens.HomeScreen
 import dev.kreienbuehl.mapcomposekmp.ui.theme.MapComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,16 +12,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MapComposeTheme {
-                MapComposeDemoApp()
+                Navigator(HomeScreen)
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MapComposeTheme {
-        MapComposeDemoApp()
     }
 }

@@ -47,6 +47,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.kotlinx.coroutines)
             implementation(libs.ktor.client.core)
+            implementation(libs.voyager.navigation)
+            implementation(libs.voyager.screenmodel)
             implementation(project(":mapcompose"))
         }
         desktopMain.dependencies {
@@ -105,3 +107,5 @@ compose.desktop {
         }
     }
 }
+
+task("testClasses")
